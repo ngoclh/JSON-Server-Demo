@@ -1,0 +1,38 @@
+@host = http://localhost:3000/api
+
+# Category
+
+###
+# @name login
+POST  {{host}}/login
+Content-Type: application/json
+
+{
+    "userName":"Maiya59",
+    "password":"Enrico_Rowe79"
+}
+
+###
+
+@token = {{login.response.body.token}}
+
+GET {{host}}/users
+Content-Type: application/json
+token:{{token}}
+
+###
+
+# @name UpdateUser
+PUT {{host}}/users/3524305b-5402-4b59-bf11-f41e2fe939ba
+Content-Type: application/json
+token:{{token}}
+
+{
+    "password": "Humberto561"
+}
+
+###
+# @name getUserById
+GET {{host}}/users/b34a4cfa-fefb-4165-9f6d-a8ec9d48b012
+Content-Type: application/json
+token:{{token}}
